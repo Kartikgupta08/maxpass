@@ -1,4 +1,11 @@
 window.RenderMap = () => `
+    <header class="page-header">
+        <div>
+            <h1 class="page-title">Live Locations</h1>
+            <p class="page-subtitle">Track battery positions and live operating status</p>
+        </div>
+    </header>
+
     <div class="kpi-grid" style="margin-bottom: 1.5rem;">
         <div class="card kpi-card edge-accent edge-accent-primary flex justify-between items-center" style="flex-direction: row;">
             <div>
@@ -27,7 +34,7 @@ window.RenderMap = () => `
         <div class="map-container">
             <div id="map"></div>
             <div class="map-legend">
-                <span style="display:flex; align-items:center; gap:0.5rem;"><div style="width:12px;height:12px;border-radius:50%;background:var(--success-color);"></div> Online Battery</span>
+                <span style="display:flex; align-items:center; gap:0.5rem;"><div style="width:12px;height:12px;border-radius:50%;background:var(--danger-color);"></div> Battery Location</span>
                 <span style="display:flex; align-items:center; gap:0.5rem;"><div style="width:12px;height:12px;border-radius:50%;background:#94a3b8;"></div> Offline Battery</span>
             </div>
         </div>
@@ -99,7 +106,7 @@ window.InitMap = () => {
             });
         };
 
-        const onlineIcon = createIcon(getVar('--success-color') || '#2e7d32'); 
+        const onlineIcon = createIcon(getVar('--danger-color') || '#d32f2f'); 
         const offlineIcon = createIcon('#94a3b8');
 
         const panelEmpty = document.getElementById('sidePanelEmpty');
