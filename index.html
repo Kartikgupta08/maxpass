@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxPass - Battery Dashboard SPA</title>
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/map.css" id="map-css" disabled>
+    <link rel="stylesheet" href="css/cells.css" id="cells-css" disabled>
+    <link rel="stylesheet" href="css/analytics.css" id="analytics-css" disabled>
+    
+    <!-- Script Dependencies -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Note: Leaflet is loaded dynamically in map.js to avoid issues -->
+</head>
+<body>
+    <div class="app-container">
+        <!-- Persistent Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i data-lucide="zap"></i>
+                MaxPass
+            </div>
+            <ul class="nav-links">
+                <!-- Using Hash routing -->
+                <li><a href="#/dashboard" class="nav-link"><i data-lucide="layout-dashboard"></i> Fleet Overview</a></li>
+                <li><a href="#/battery" class="nav-link"><i data-lucide="battery-charging"></i> Battery Insights</a></li>
+                <li><a href="#/cells" class="nav-link"><i data-lucide="grid-3x3"></i> Cell Diagnostics</a></li>
+                <li><a href="#/analytics" class="nav-link"><i data-lucide="bar-chart-2"></i> Analytics</a></li>
+                <li><a href="#/alerts" class="nav-link"><i data-lucide="alert-triangle"></i> Alerts</a></li>
+                <li><a href="#/map" class="nav-link"><i data-lucide="map"></i> Map</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="theme-toggle" id="theme-toggle-btn">
+                    <i data-lucide="moon"></i> Dark Mode
+                </div>
+            </div>
+        </aside>
+
+        <!-- Dynamic Main Content Container -->
+        <main class="main-content" id="app-content">
+            <!-- Templates are injected here by app.js -->
+        </main>
+    </div>
+
+    <!-- Application Logic -->
+    <script src="js/data.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/battery.js"></script>
+    <script src="js/cells.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/alerts.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

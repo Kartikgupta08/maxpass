@@ -1,0 +1,193 @@
+.battery-pack {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    position: relative;
+    background: linear-gradient(135deg, var(--surface-color) 0%, var(--surface-hover) 100%);
+    margin-top: var(--space-4);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+}
+
+.battery-pack:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.battery-pack::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 12px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    border-radius: 4px 4px 0 0;
+}
+
+.cells-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--space-4);
+}
+
+@media (max-width: 1200px) { 
+    .cells-grid { 
+        grid-template-columns: repeat(4, 1fr); 
+    } 
+}
+
+@media (max-width: 768px) { 
+    .cells-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+    } 
+}
+
+@media (max-width: 480px) { 
+    .cells-grid { 
+        grid-template-columns: 1fr; 
+    } 
+}
+
+.cell-box {
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--surface-color);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.cell-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.cell-box:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.cell-box:hover::before {
+    opacity: 1;
+}
+
+.cell-box.good { 
+    border-color: var(--success-color); 
+    background-color: var(--success-light); 
+    color: var(--success-text);
+}
+
+.cell-box.warning { 
+    border-color: var(--warning-color); 
+    background-color: var(--warning-light); 
+    color: var(--warning-text);
+}
+
+.cell-box.critical { 
+    border-color: var(--danger-color); 
+    background-color: var(--danger-light); 
+    color: var(--danger-text);
+}
+
+.cell-number {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    color: inherit;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.cell-voltage {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+}
+
+.cell-status {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(6px);
+    animation: fadeIn var(--transition-normal) ease-in-out;
+}
+
+.modal-overlay.active { 
+    display: flex; 
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    border-radius: var(--radius-xl);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: var(--space-8);
+    position: relative;
+    box-shadow: var(--shadow-xl);
+    animation: slideUp var(--transition-normal) ease-in-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    width: 40px; 
+    height: 40px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.modal-close:hover { 
+    background-color: var(--surface-hover); 
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.modal-body-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+}
