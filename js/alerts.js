@@ -63,9 +63,9 @@ window.RenderAlerts = () => `
         </table>
     </div>
 
-    <div class="card" style="margin-top: 2rem; display: inline-block;">
+    <div class="card alerts-legend-card">
         <h4 style="margin-bottom: 0.5rem; font-size: 0.875rem;">Legend</h4>
-        <div style="display: flex; gap: 1rem;">
+        <div class="alerts-legend-items">
             <span class="badge danger"><div class="badge-dot"></div> High</span>
             <span class="badge warning"><div class="badge-dot"></div> Medium</span>
             <span class="badge success"><div class="badge-dot"></div> Low</span>

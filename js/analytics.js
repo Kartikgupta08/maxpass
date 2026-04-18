@@ -74,13 +74,13 @@ window.RenderAnalytics = () => `
             <h3 class="chart-header">SOH Distribution</h3>
             <div style="height: 280px;"><canvas id="sohDistChart"></canvas></div>
         </div>
-        <div class="chart-card" style="grid-column: 1 / -1;">
+        <div class="chart-card analytics-chart-full">
             <h3 class="chart-header">Daily Usage Trends (Distance km)</h3>
             <div style="height: 280px;"><canvas id="usageChart"></canvas></div>
         </div>
     </div>
 
-    <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Category Statistics</h3>
+    <h3 class="analytics-section-title">Category Statistics</h3>
     <div class="table-container">
         <table>
             <thead>

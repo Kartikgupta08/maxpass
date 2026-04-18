@@ -128,3 +128,15 @@
         max-height: 300px;
     }
 }
+
+@media (max-width: 768px) {
+    .map-legend {
+        left: var(--space-3);
+        right: var(--space-3);
+        bottom: var(--space-3);
+        width: auto;
+        flex-wrap: wrap;
+        gap: var(--space-2) var(--space-3);
+        font-size: var(--text-xs);
+    }
+}

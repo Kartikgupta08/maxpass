@@ -6,15 +6,15 @@ window.RenderBattery = () => `
         </div>
     </header>
 
-    <div class="controls-bar card" style="display: flex; gap: 1rem;">
-        <div style="flex-grow: 1;">
+    <div class="controls-bar card battery-controls">
+        <div class="battery-search-group">
             <label class="info-label" style="display: block; margin-bottom: 0.5rem;">Battery ID / BMS ID</label>
-            <div class="search-wrapper" style="max-width: none;">
+            <div class="search-wrapper battery-search-wrapper">
                 <i data-lucide="search"></i>
                 <input type="text" class="input-field" value="BAT-1000" id="bat-search">
             </div>
         </div>
-        <div style="display: flex; align-items: flex-end; gap: 1rem;">
+        <div class="battery-actions">
             <button class="btn btn-primary" onclick="alert('Search simulated')">Search</button>
             <button class="btn btn-outline" onclick="alert('QR Scanned')"><i data-lucide="qr-code"></i> Scan QR</button>
         </div>
@@ -66,7 +66,7 @@ window.RenderBattery = () => `
                 <canvas id="currentChart"></canvas>
             </div>
         </div>
-        <div class="chart-card" style="grid-column: 1 / -1;">
+        <div class="chart-card chart-card-full">
             <div class="chart-header">Temperature</div>
             <div class="chart-canvas-wrap chart-canvas-wrap-lg">
                 <canvas id="tempChart"></canvas>
@@ -74,8 +74,8 @@ window.RenderBattery = () => `
         </div>
     </div>
 
-    <div class="card">
-        <h3 class="chart-header" style="margin-bottom: 1.5rem;">Battery Specifications</h3>
+    <div class="card battery-spec-card">
+        <h3 class="chart-header page-section-title">Battery Specifications</h3>
         <div class="info-panel">
             <div class="info-item"><span class="info-label">Battery ID</span><span class="info-value">BAT-1000</span></div>
             <div class="info-item"><span class="info-label">IMEI</span><span class="info-value">865492040123456</span></div>
@@ -100,8 +100,8 @@ window.InitBattery = () => {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-            x: { grid: { color: gridColor, drawBorder: false }, ticks: { color: tickColor } },
-            y: { grid: { color: gridColor, drawBorder: false }, ticks: { color: tickColor } }
+            x: { grid: { display: false, drawBorder: false }, ticks: { color: tickColor } },
+            y: { grid: { display: false, drawBorder: false }, ticks: { color: tickColor } }
         },
         elements: {
             line: { tension: 0.4 },

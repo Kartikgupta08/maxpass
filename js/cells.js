@@ -6,21 +6,21 @@ window.RenderCells = () => `
         </div>
     </header>
 
-    <div class="controls-bar card" style="display: flex; gap: 1rem;">
-        <div style="flex-grow: 1;">
+    <div class="controls-bar card cell-controls">
+        <div class="cell-search-group">
             <label class="info-label" style="display: block; margin-bottom: 0.5rem; font-size: 0.875rem;">Battery ID / BMS ID</label>
-            <div class="search-wrapper" style="max-width: none;">
+            <div class="search-wrapper cell-search-wrapper">
                 <i data-lucide="search"></i>
                 <input type="text" class="input-field" value="BAT-1000">
             </div>
         </div>
-        <div style="display: flex; align-items: flex-end; gap: 1rem;">
+        <div class="cell-actions">
             <button class="btn btn-primary" onclick="alert('Search simulated')">Search</button>
             <button class="btn btn-outline"><i data-lucide="qr-code"></i> Scan QR</button>
         </div>
     </div>
 
-    <h3 style="margin-top: 2rem;">Battery: Battery 1 (BAT-1000)</h3>
+    <h3 class="cell-page-title">Battery: Battery 1 (BAT-1000)</h3>
     <div class="battery-pack">
         <div class="cells-grid" id="cells-container">
             <!-- Populated by JS -->
@@ -33,7 +33,7 @@ window.RenderCells = () => `
             <button class="modal-close" id="close-modal-btn"><i data-lucide="x"></i></button>
             <h2 id="modal-title" style="margin-bottom: 1.5rem;">Cell Details</h2>
             
-            <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 1.5rem;">
+            <div class="kpi-grid cell-modal-kpi-grid">
                 <div class="card kpi-card" style="padding: 1rem;">
                     <div class="kpi-title">Voltage</div>
                     <div class="kpi-value" style="color: var(--primary-color);" id="modal-v">-<span class="kpi-unit">V</span></div>
