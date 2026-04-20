@@ -8,6 +8,7 @@
 .battery-controls {
     display: flex;
     gap: var(--space-4);
+    align-items: flex-end;
 }
 
 .battery-search-group {
@@ -22,6 +23,7 @@
 .battery-actions {
     display: flex;
     align-items: flex-end;
+    align-self: flex-end;
     gap: var(--space-4);
 }
 

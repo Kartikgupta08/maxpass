@@ -4,11 +4,6 @@ window.RenderDashboard = () => `
             <h1 class="page-title">Fleet Overview</h1>
             <p class="page-subtitle">Monitor and manage all registered batteries</p>
         </div>
-        <div class="header-actions">
-            <button class="btn btn-outline" onclick="alert('Scan QR UI mock')">
-                <i data-lucide="qr-code"></i> Scan QR
-            </button>
-        </div>
     </header>
 
     <div class="kpi-grid fleet-kpi-grid">
@@ -33,7 +28,7 @@ window.RenderDashboard = () => `
     <div class="controls-bar card">
         <div class="search-wrapper">
             <i data-lucide="search"></i>
-            <input type="text" class="input-field" id="dashboard-search" placeholder="Search by name or ID...">
+            <input type="text" class="input-field" id="dashboard-search" placeholder="Search by name, battery ID, or IMEI...">
         </div>
         <select class="select-field" id="dashboard-category">
             <option value="all">All Categories</option>
@@ -47,6 +42,12 @@ window.RenderDashboard = () => `
             <option value="Online">Online</option>
             <option value="Offline">Offline</option>
         </select>
+        <div class="search-wrapper" style="max-width: 320px;">
+            <i data-lucide="smartphone"></i>
+            <input type="text" class="input-field" id="global-imei-input" placeholder="Set global IMEI ID...">
+        </div>
+        <button class="btn btn-primary" id="global-imei-apply">Apply IMEI</button>
+        <button class="btn btn-outline" id="global-imei-clear">Clear IMEI</button>
     </div>
 
     <div style="margin-bottom: var(--space-4); color: var(--text-secondary); font-size: 0.875rem; padding: 0 var(--space-2);" id="battery-count-label">Loading batteries...</div>
@@ -107,6 +108,9 @@ window.InitDashboard = () => {
     const onlineKpi = document.getElementById('kpi-online-batteries');
     const offlineKpi = document.getElementById('kpi-offline-batteries');
     const faultyKpi = document.getElementById('kpi-faulty-batteries');
+    const globalImeiInput = document.getElementById('global-imei-input');
+    const globalImeiApply = document.getElementById('global-imei-apply');
+    const globalImeiClear = document.getElementById('global-imei-clear');
 
     const setTableMessage = (message) => {
         if (!tbody) return;
@@ -144,6 +148,7 @@ window.InitDashboard = () => {
                 <td>
                     <div style="font-weight: 500;">${bat.name}</div>
                     <div style="font-size: 0.75rem; color: var(--text-secondary);">${bat.id}</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">IMEI: ${bat.imei}</div>
                 </td>
                 <td>
                     <span class="badge ${statusClass}">
@@ -208,7 +213,8 @@ window.InitDashboard = () => {
         filteredBatteries = allBatteries.filter((bat) => {
             const matchSearch = !searchTerm ||
                 bat.name.toLowerCase().includes(searchTerm) ||
-                bat.id.toLowerCase().includes(searchTerm);
+                bat.id.toLowerCase().includes(searchTerm) ||
+                bat.imei.toLowerCase().includes(searchTerm);
 
             const tag = bat.tag.toLowerCase();
             const matchCategory = category === 'all' ||
@@ -228,6 +234,25 @@ window.InitDashboard = () => {
 
         renderTable();
         updatePagination();
+    };
+
+    const applyGlobalImei = async () => {
+        const imei = (globalImeiInput?.value || '').trim();
+        if (!imei) return;
+        const selected = await window.Services.setSelectedImei(imei);
+        if (!selected) {
+            alert('IMEI not found. Please enter a valid IMEI ID from fleet records.');
+            return;
+        }
+        if (searchInput) searchInput.value = selected.imei;
+        if (countLabel) countLabel.textContent = `Global IMEI selected: ${selected.imei} (${selected.id})`;
+        applyFilters();
+    };
+
+    const clearGlobalImei = () => {
+        window.Services.clearSelectedImei();
+        if (globalImeiInput) globalImeiInput.value = '';
+        applyFilters();
     };
 
     const sortTable = (column) => {
@@ -295,11 +320,22 @@ window.InitDashboard = () => {
         }
     });
 
+    globalImeiApply?.addEventListener('click', applyGlobalImei);
+    globalImeiClear?.addEventListener('click', clearGlobalImei);
+    globalImeiInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') applyGlobalImei();
+    });
+
     const loadBatteries = async () => {
         setTableMessage('Loading batteries...');
         try {
             allBatteries = await window.Services.fetchBatteries();
             filteredBatteries = [...allBatteries];
+            const selectedImei = window.Services.getSelectedImei();
+            if (selectedImei && globalImeiInput) {
+                globalImeiInput.value = selectedImei;
+                if (searchInput) searchInput.value = selectedImei;
+            }
             updateFleetKpis();
             applyFilters();
         } catch (error) {
@@ -315,5 +351,7 @@ window.InitDashboard = () => {
         searchInput?.removeEventListener('input', onSearch);
         categorySelect?.removeEventListener('change', onCategory);
         statusSelect?.removeEventListener('change', onStatus);
+        globalImeiApply?.removeEventListener('click', applyGlobalImei);
+        globalImeiClear?.removeEventListener('click', clearGlobalImei);
     };
 };

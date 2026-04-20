@@ -8,15 +8,14 @@ window.RenderBattery = () => `
 
     <div class="controls-bar card battery-controls">
         <div class="battery-search-group">
-            <label class="info-label" style="display: block; margin-bottom: 0.5rem;">Battery ID / BMS ID</label>
+            <label class="info-label" style="display: block; margin-bottom: 0.5rem;">IMEI ID</label>
             <div class="search-wrapper battery-search-wrapper">
                 <i data-lucide="search"></i>
-                <input type="text" class="input-field" value="BAT-1000" id="bat-search">
+                <input type="text" class="input-field" value="" id="bat-search" placeholder="Enter IMEI ID">
             </div>
         </div>
         <div class="battery-actions">
-            <button class="btn btn-primary" onclick="alert('Search simulated')">Search</button>
-            <button class="btn btn-outline" onclick="alert('QR Scanned')"><i data-lucide="qr-code"></i> Scan QR</button>
+            <button class="btn btn-primary" id="battery-imei-search-btn"><i data-lucide="search"></i> Search</button>
         </div>
     </div>
 
@@ -77,8 +76,8 @@ window.RenderBattery = () => `
     <div class="card battery-spec-card">
         <h3 class="chart-header page-section-title">Battery Specifications</h3>
         <div class="info-panel">
-            <div class="info-item"><span class="info-label">Battery ID</span><span class="info-value">BAT-1000</span></div>
-            <div class="info-item"><span class="info-label">IMEI</span><span class="info-value">865492040123456</span></div>
+            <div class="info-item"><span class="info-label">Battery ID</span><span class="info-value" id="battery-spec-id">-</span></div>
+            <div class="info-item"><span class="info-label">IMEI</span><span class="info-value" id="battery-spec-imei">-</span></div>
             <div class="info-item"><span class="info-label">Power</span><span class="info-value">1.27 kW</span></div>
             <div class="info-item"><span class="info-label">Cycles</span><span class="info-value">245</span></div>
             <div class="info-item"><span class="info-label">Temperature</span><span class="info-value">28°C</span></div>
@@ -141,7 +140,45 @@ window.InitBattery = () => {
         }));
     }, 50);
 
+    const searchInput = document.getElementById('bat-search');
+    const searchBtn = document.getElementById('battery-imei-search-btn');
+    const specId = document.getElementById('battery-spec-id');
+    const specImei = document.getElementById('battery-spec-imei');
+
+    const syncSelectedBattery = async () => {
+        const selected = await window.Services.getSelectedBattery();
+        if (!selected) return;
+        if (searchInput) searchInput.value = selected.imei;
+        if (specId) specId.textContent = selected.id;
+        if (specImei) specImei.textContent = selected.imei;
+    };
+
+    const applyImeiSelection = async () => {
+        const imei = (searchInput?.value || '').trim();
+        if (!imei) return;
+        const selected = await window.Services.setSelectedImei(imei);
+        if (!selected) {
+            alert('IMEI not found. Please use a valid IMEI from Fleet Overview.');
+            return;
+        }
+        if (specId) specId.textContent = selected.id;
+        if (specImei) specImei.textContent = selected.imei;
+    };
+
+    searchBtn?.addEventListener('click', applyImeiSelection);
+    searchInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') applyImeiSelection();
+    });
+
+    const onSelectedImeiChanged = () => {
+        syncSelectedBattery();
+    };
+    window.addEventListener('selectedImeiChanged', onSelectedImeiChanged);
+    syncSelectedBattery();
+
     return () => {
         instances.forEach(chart => chart.destroy());
+        searchBtn?.removeEventListener('click', applyImeiSelection);
+        window.removeEventListener('selectedImeiChanged', onSelectedImeiChanged);
     };
 };

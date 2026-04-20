@@ -185,12 +185,23 @@ window.InitMap = () => {
         return Promise.all([cssPromise, jsPromise]);
     };
 
-    Promise.all([loadLeafletAssets(), window.Services.fetchMapBatteries()])
+    const loadMapData = () => Promise.all([loadLeafletAssets(), window.Services.fetchMapBatteries()])
         .then(([, batteries]) => setTimeout(() => initializeLeaflet(batteries), 30))
         .catch(() => {
             const panelEmpty = document.getElementById('sidePanelEmpty');
             if (panelEmpty) panelEmpty.innerHTML = '<p>Failed to load map batteries</p>';
         });
+
+    loadMapData();
+
+    const onSelectedImeiChanged = () => {
+        if (mapInstance) {
+            mapInstance.remove();
+            mapInstance = null;
+        }
+        loadMapData();
+    };
+    window.addEventListener('selectedImeiChanged', onSelectedImeiChanged);
 
     return () => {
         if(mapInstance) {
@@ -201,5 +212,6 @@ window.InitMap = () => {
             window.removeEventListener('resize', resizeHandler);
             resizeHandler = null;
         }
+        window.removeEventListener('selectedImeiChanged', onSelectedImeiChanged);
     };
 };

@@ -41,8 +41,8 @@ window.RenderAnalytics = () => `
             <input type="date" class="input-field" id="analytics-end-date">
         </div>
         <div class="filter-actions">
-            <button class="btn btn-primary" id="analytics-search-btn">Search</button>
-            <button class="btn btn-outline" id="analytics-reset-btn">Reset</button>
+            <button class="btn btn-primary" id="analytics-search-btn"><i data-lucide="search"></i> Search</button>
+            <button class="btn btn-outline" id="analytics-reset-btn"><i data-lucide="rotate-ccw"></i> Reset</button>
         </div>
     </div>
 
@@ -270,10 +270,15 @@ window.InitAnalytics = () => {
     };
 
     loadAnalytics();
+    const onSelectedImeiChanged = () => {
+        loadAnalytics();
+    };
+    window.addEventListener('selectedImeiChanged', onSelectedImeiChanged);
     window.addEventListener('themeChanged', renderCharts);
 
     return () => {
         instances.forEach((c) => c.destroy());
+        window.removeEventListener('selectedImeiChanged', onSelectedImeiChanged);
         window.removeEventListener('themeChanged', renderCharts);
     };
 };

@@ -41,7 +41,7 @@ window.RenderAlerts = () => `
             <option value="active">Active</option>
             <option value="resolved">Resolved</option>
         </select>
-        <button class="btn btn-primary" id="alerts-filter-btn">Filter</button>
+        <button class="btn btn-primary" id="alerts-filter-btn"><i data-lucide="filter"></i> Filter</button>
     </div>
 
     <div class="table-container">
@@ -177,9 +177,14 @@ window.InitAlerts = () => {
     };
 
     loadAlerts();
+    const onSelectedImeiChanged = () => {
+        loadAlerts();
+    };
+    window.addEventListener('selectedImeiChanged', onSelectedImeiChanged);
 
     return () => {
         filterBtn?.removeEventListener('click', onFilter);
         searchInput?.removeEventListener('input', onSearch);
+        window.removeEventListener('selectedImeiChanged', onSelectedImeiChanged);
     };
 };

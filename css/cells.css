@@ -1,5 +1,5 @@
 .battery-pack {
-    border: 1px solid var(--border-light);
+    border: 1px solid color-mix(in srgb, var(--primary-color) 62%, var(--border-light) 38%);
     border-radius: var(--radius-lg);
     padding: var(--space-8);
     position: relative;
@@ -9,9 +9,36 @@
     transition: all var(--transition-normal);
 }
 
+.cell-analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin: 1rem 0 1.5rem;
+}
+
+.cell-chart-card {
+    background: var(--surface-color);
+}
+
+.cell-chart-card-full {
+    grid-column: 1 / -1;
+}
+
+.cell-chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 260px;
+}
+
+.cell-chart-wrap canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
 .cell-controls {
     display: flex;
     gap: var(--space-4);
+    align-items: flex-end;
 }
 
 .cell-search-group {
@@ -26,6 +53,7 @@
 .cell-actions {
     display: flex;
     align-items: flex-end;
+    align-self: flex-end;
     gap: var(--space-4);
 }
 
@@ -68,6 +96,19 @@
 }
 
 @media (max-width: 768px) { 
+    .cell-analytics-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .cell-chart-card-full {
+        grid-column: auto;
+    }
+
+    .cell-chart-wrap {
+        height: 230px;
+    }
+
     .cell-actions {
         width: 100%;
         gap: var(--space-3);
