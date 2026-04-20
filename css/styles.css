@@ -323,6 +323,8 @@ body { font-size: var(--text-base); line-height: 1.6; }
   font-size: 0.9rem;
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-md);
+  border: 2px solid var(--primary-color);
+  background-color: color-mix(in srgb, var(--surface-color) 86%, var(--primary-light) 14%);
   transition: all var(--transition-fast);
 }
 
@@ -581,6 +583,14 @@ body { font-size: var(--text-base); line-height: 1.6; }
   background-color: var(--surface-hover); 
   border-color: var(--primary-color);
   color: var(--primary-color);
+}
+
+#global-imei-clear {
+  border: 2px solid var(--primary-color);
+}
+
+#analytics-reset-btn {
+  border: 2px solid var(--primary-color);
 }
 
 .btn-icon { 
