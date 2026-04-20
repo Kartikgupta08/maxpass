@@ -21,20 +21,40 @@ window.RenderBattery = () => `
 
     <div class="kpi-grid">
         <div class="card kpi-card edge-accent edge-accent-primary">
-            <div class="kpi-title">State of Charge</div>
-            <div class="kpi-value" style="color: var(--primary-color);">90.7<span class="kpi-unit">%</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">State of Charge</div>
+                    <div class="kpi-value" style="color: var(--primary-color);">90.7<span class="kpi-unit">%</span></div>
+                </div>
+                <i data-lucide="battery-medium" style="color: var(--primary-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="card kpi-card edge-accent edge-accent-success">
-            <div class="kpi-title">State of Health</div>
-            <div class="kpi-value good">95.0<span class="kpi-unit">%</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">State of Health</div>
+                    <div class="kpi-value good">95.0<span class="kpi-unit">%</span></div>
+                </div>
+                <i data-lucide="heart-pulse" style="color: var(--success-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="card kpi-card edge-accent edge-accent-info">
-            <div class="kpi-title">Voltage</div>
-            <div class="kpi-value" style="color: var(--primary-color);">51.3<span class="kpi-unit">V</span></div> 
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Voltage</div>
+                    <div class="kpi-value" style="color: var(--primary-color);">51.3<span class="kpi-unit">V</span></div>
+                </div>
+                <i data-lucide="battery-charging" style="color: var(--primary-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="card kpi-card edge-accent edge-accent-danger">
-            <div class="kpi-title">Current</div>
-            <div class="kpi-value critical">24.8<span class="kpi-unit">A</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Current</div>
+                    <div class="kpi-value critical">24.8<span class="kpi-unit">A</span></div>
+                </div>
+                <i data-lucide="zap" style="color: var(--danger-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
     </div>
 

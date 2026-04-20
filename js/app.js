@@ -3,8 +3,40 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Mobile Menu Support
     const initMobileMenu = () => {
         const sidebar = document.querySelector('.sidebar');
+        const brandMenuBtn = document.getElementById('sidebar-brand-menu-btn');
         const mainContent = document.querySelector('.main-content');
         const appContainer = document.querySelector('.app-container');
+        const desktopCollapseKey = 'sidebarCollapsed';
+
+        const applyDesktopSidebarState = () => {
+            if (!sidebar || !mainContent) return;
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('collapsed');
+                mainContent.classList.remove('sidebar-collapsed');
+                return;
+            }
+
+            const isCollapsed = localStorage.getItem(desktopCollapseKey) === 'true';
+            sidebar.classList.toggle('collapsed', isCollapsed);
+            mainContent.classList.toggle('sidebar-collapsed', isCollapsed);
+        };
+
+        const toggleSidebar = (e) => {
+            if (e) e.stopPropagation();
+            if (!sidebar) return;
+
+            if (window.innerWidth > 768) {
+                const nextCollapsed = !sidebar.classList.contains('collapsed');
+                sidebar.classList.toggle('collapsed', nextCollapsed);
+                mainContent?.classList.toggle('sidebar-collapsed', nextCollapsed);
+                localStorage.setItem(desktopCollapseKey, String(nextCollapsed));
+                return;
+            }
+
+            sidebar.classList.toggle('active');
+        };
+
+        brandMenuBtn?.addEventListener('click', toggleSidebar);
         
         // Check if we need mobile menu (screen < 768px)
         const setupMobileMenu = () => {
@@ -28,13 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 
                 btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    sidebar.classList.toggle('active');
+                    toggleSidebar(e);
                 });
             }
         };
         
         setupMobileMenu();
+        applyDesktopSidebarState();
         
         // Close menu on navigation link click
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -51,7 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         
         // Handle window resize
-        window.addEventListener('resize', setupMobileMenu);
+        window.addEventListener('resize', () => {
+            setupMobileMenu();
+            applyDesktopSidebarState();
+        });
     };
     
     // 2. Theme Initialization

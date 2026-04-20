@@ -95,6 +95,30 @@ window.InitCells = () => {
     const gridColor = () => getVar('--border-light') || '#dde5eb';
     const tickColor = () => getVar('--text-secondary') || '#5c6d78';
 
+    const withAlpha = (color, alpha) => {
+        if (!color) return `rgba(111, 75, 255, ${alpha})`;
+        const c = color.trim();
+        if (c.startsWith('#')) {
+            let hex = c.slice(1);
+            if (hex.length === 3) hex = hex.split('').map((ch) => ch + ch).join('');
+            if (hex.length === 6) {
+                const r = parseInt(hex.slice(0, 2), 16);
+                const g = parseInt(hex.slice(2, 4), 16);
+                const b = parseInt(hex.slice(4, 6), 16);
+                return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+            }
+        }
+        if (c.startsWith('rgb(')) {
+            const nums = c.replace('rgb(', '').replace(')', '').split(',').map((x) => x.trim());
+            if (nums.length >= 3) return `rgba(${nums[0]}, ${nums[1]}, ${nums[2]}, ${alpha})`;
+        }
+        if (c.startsWith('rgba(')) {
+            const nums = c.replace('rgba(', '').replace(')', '').split(',').map((x) => x.trim());
+            if (nums.length >= 3) return `rgba(${nums[0]}, ${nums[1]}, ${nums[2]}, ${alpha})`;
+        }
+        return c;
+    };
+
     const cellData = Array.from({ length: 16 }, (_, idx) => {
         const i = idx + 1;
         const voltage = parseFloat((Math.random() * (4.2 - 3.2) + 3.2).toFixed(2));
@@ -165,8 +189,8 @@ window.InitCells = () => {
                 tooltip: { enabled: true }
             },
             scales: {
-                x: { grid: { color: gridColor, drawBorder: false }, ticks: { color: tickColor } },
-                y: { grid: { color: gridColor, drawBorder: false }, ticks: { color: tickColor } }
+                x: { grid: { display: false, drawBorder: false }, ticks: { color: tickColor } },
+                y: { grid: { display: false, drawBorder: false }, ticks: { color: tickColor } }
             }
         };
 
@@ -186,7 +210,7 @@ window.InitCells = () => {
                     label: 'Voltage (V)',
                     data: voltageValues,
                     borderColor: getVar('--primary-color') || '#0e5a6f',
-                    backgroundColor: (getVar('--primary-light') || '#d8e8f4') + '80',
+                    backgroundColor: 'rgba(168, 147, 255, 0.28)',
                     fill: true,
                     tension: 0.35,
                     pointRadius: 4,
@@ -203,7 +227,7 @@ window.InitCells = () => {
                 datasets: [{
                     label: 'Temperature (°C)',
                     data: tempValues,
-                    backgroundColor: getVar('--danger-color') || '#d32f2f',
+                    backgroundColor: getVar('--success-color') || '#2e7d32',
                     borderRadius: 8,
                     borderSkipped: false
                 }]
@@ -219,7 +243,7 @@ window.InitCells = () => {
                     label: 'Current (A)',
                     data: currentValues,
                     borderColor: getVar('--warning-color') || '#f57c00',
-                    backgroundColor: (getVar('--warning-light') || '#fff3e0') + '88',
+                    backgroundColor: 'rgba(255, 196, 112, 0.30)',
                     fill: true,
                     tension: 0.35,
                     pointRadius: 4,

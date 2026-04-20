@@ -48,20 +48,40 @@ window.RenderAnalytics = () => `
 
     <div class="kpi-grid">
         <div class="kpi-card edge-accent edge-accent-primary">
-            <div class="kpi-title">Total Batteries</div>
-            <div class="kpi-value" id="analytics-kpi-total">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Total Batteries</div>
+                    <div class="kpi-value" id="analytics-kpi-total">0</div>
+                </div>
+                <i data-lucide="battery-charging" style="color: var(--primary-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="kpi-card edge-accent edge-accent-success">
-            <div class="kpi-title">Online Batteries</div>
-            <div class="kpi-value good" id="analytics-kpi-online">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Online Batteries</div>
+                    <div class="kpi-value good" id="analytics-kpi-online">0</div>
+                </div>
+                <i data-lucide="radio-tower" style="color: var(--success-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="kpi-card edge-accent edge-accent-info">
-            <div class="kpi-title">Avg SOC</div>
-            <div class="kpi-value" style="color: var(--primary-color);" id="analytics-kpi-soc">0<span class="kpi-unit">%</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Avg SOC</div>
+                    <div class="kpi-value" style="color: var(--primary-color);" id="analytics-kpi-soc">0<span class="kpi-unit">%</span></div>
+                </div>
+                <i data-lucide="battery-medium" style="color: var(--primary-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="kpi-card edge-accent edge-accent-success">
-            <div class="kpi-title">Avg SOH</div>
-            <div class="kpi-value good" id="analytics-kpi-soh">0<span class="kpi-unit">%</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Avg SOH</div>
+                    <div class="kpi-value good" id="analytics-kpi-soh">0<span class="kpi-unit">%</span></div>
+                </div>
+                <i data-lucide="heart-pulse" style="color: var(--success-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
     </div>
 

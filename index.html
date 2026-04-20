@@ -20,21 +20,24 @@
         <!-- Persistent Sidebar -->
         <aside class="sidebar">
             <div class="brand">
+                <button class="brand-menu-btn" id="sidebar-brand-menu-btn" aria-label="Toggle menu">
+                    <i data-lucide="menu"></i>
+                </button>
                 <i data-lucide="zap"></i>
-                MaxPass
+                <span class="brand-label">MaxPass</span>
             </div>
             <ul class="nav-links">
                 <!-- Using Hash routing -->
-                <li><a href="#/dashboard" class="nav-link"><i data-lucide="layout-dashboard"></i> Fleet Overview</a></li>
-                <li><a href="#/battery" class="nav-link"><i data-lucide="battery-charging"></i> Battery Insights</a></li>
-                <li><a href="#/cells" class="nav-link"><i data-lucide="grid-3x3"></i> Cell Diagnostics</a></li>
-                <li><a href="#/analytics" class="nav-link"><i data-lucide="bar-chart-2"></i> Analytics</a></li>
-                <li><a href="#/alerts" class="nav-link"><i data-lucide="alert-triangle"></i> Alerts</a></li>
-                <li><a href="#/map" class="nav-link"><i data-lucide="map-pin"></i> Live Locations</a></li>
+                <li><a href="#/dashboard" class="nav-link"><i data-lucide="layout-dashboard"></i><span class="nav-label">Fleet Overview</span></a></li>
+                <li><a href="#/battery" class="nav-link"><i data-lucide="battery-charging"></i><span class="nav-label">Battery Insights</span></a></li>
+                <li><a href="#/cells" class="nav-link"><i data-lucide="grid-3x3"></i><span class="nav-label">Cell Diagnostics</span></a></li>
+                <li><a href="#/analytics" class="nav-link"><i data-lucide="bar-chart-2"></i><span class="nav-label">Analytics</span></a></li>
+                <li><a href="#/alerts" class="nav-link"><i data-lucide="alert-triangle"></i><span class="nav-label">Alerts</span></a></li>
+                <li><a href="#/map" class="nav-link"><i data-lucide="map-pin"></i><span class="nav-label">Live Locations</span></a></li>
             </ul>
             <div class="sidebar-footer">
                 <div class="theme-toggle" id="theme-toggle-btn">
-                    <i data-lucide="moon"></i> Dark Mode
+                    <i data-lucide="moon"></i><span class="theme-label">Dark Mode</span>
                 </div>
             </div>
         </aside>

@@ -8,20 +8,40 @@ window.RenderAlerts = () => `
 
     <div class="kpi-grid">
         <div class="card kpi-card edge-accent edge-accent-primary">
-            <div class="kpi-title">Total Active Alerts</div>
-            <div class="kpi-value" id="alerts-kpi-total">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Total Active Alerts</div>
+                    <div class="kpi-value" id="alerts-kpi-total">0</div>
+                </div>
+                <i data-lucide="message-square-warning" style="color: var(--primary-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="card kpi-card edge-accent edge-accent-danger">
-            <div class="kpi-title">High Severity</div>
-            <div class="kpi-value critical" id="alerts-kpi-high">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">High Severity</div>
+                    <div class="kpi-value critical" id="alerts-kpi-high">0</div>
+                </div>
+                <i data-lucide="circle-alert" style="color: var(--danger-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="card kpi-card edge-accent edge-accent-warning">
-            <div class="kpi-title">Medium Severity</div>
-            <div class="kpi-value warning" id="alerts-kpi-medium">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Medium Severity</div>
+                    <div class="kpi-value warning" id="alerts-kpi-medium">0</div>
+                </div>
+                <i data-lucide="octagon-alert" style="color: var(--warning-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="card kpi-card edge-accent edge-accent-success">
-            <div class="kpi-title">Resolved (Today)</div>
-            <div class="kpi-value good" id="alerts-kpi-resolved">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Resolved (Today)</div>
+                    <div class="kpi-value good" id="alerts-kpi-resolved">0</div>
+                </div>
+                <i data-lucide="thumbs-up" style="color: var(--success-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
     </div>
 

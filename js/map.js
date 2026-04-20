@@ -12,21 +12,21 @@ window.RenderMap = () => `
                 <div class="kpi-title">Total Batteries</div>
                 <div class="kpi-value" id="map-kpi-total">0</div>
             </div>
-            <i data-lucide="map-pin" style="color: var(--text-secondary); width: 32px; height: 32px;"></i>
+            <i data-lucide="battery-charging" style="color: var(--primary-color); width: 32px; height: 32px;"></i>
         </div>
         <div class="card kpi-card edge-accent edge-accent-success flex justify-between items-center" style="flex-direction: row;">
             <div>
                 <div class="kpi-title">Online Batteries</div>
                 <div class="kpi-value good" id="map-kpi-online">0</div>
             </div>
-            <i data-lucide="zap" style="color: var(--success-color); width: 32px; height: 32px;"></i>
+            <i data-lucide="radio-tower" style="color: var(--success-color); width: 28px; height: 28px;"></i>
         </div>
         <div class="card kpi-card edge-accent edge-accent-danger flex justify-between items-center" style="flex-direction: row;">
             <div>
                 <div class="kpi-title">Offline Batteries</div>
                 <div class="kpi-value critical" id="map-kpi-offline">0</div>
             </div>
-            <i data-lucide="zap-off" style="color: var(--danger-color); width: 32px; height: 32px;"></i>
+            <i data-lucide="wifi-off" style="color: var(--danger-color); width: 28px; height: 28px;"></i>
         </div>
     </div>
 

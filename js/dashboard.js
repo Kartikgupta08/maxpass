@@ -8,20 +8,40 @@ window.RenderDashboard = () => `
 
     <div class="kpi-grid fleet-kpi-grid">
         <div class="kpi-card fleet-kpi-card edge-accent edge-accent-primary">
-            <div class="kpi-title">Total Batteries</div>
-            <div class="kpi-value" id="kpi-total-batteries">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Total Batteries</div>
+                    <div class="kpi-value" id="kpi-total-batteries">0</div>
+                </div>
+                <i data-lucide="battery-charging" style="color: var(--primary-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="kpi-card fleet-kpi-card edge-accent edge-accent-success">
-            <div class="kpi-title">Online Batteries</div>
-            <div class="kpi-value good" id="kpi-online-batteries">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Online Batteries</div>
+                    <div class="kpi-value good" id="kpi-online-batteries">0</div>
+                </div>
+                <i data-lucide="radio-tower" style="color: var(--success-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="kpi-card fleet-kpi-card edge-accent edge-accent-danger">
-            <div class="kpi-title">Offline Batteries</div>
-            <div class="kpi-value critical" id="kpi-offline-batteries">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Offline Batteries</div>
+                    <div class="kpi-value critical" id="kpi-offline-batteries">0</div>
+                </div>
+                <i data-lucide="wifi-off" style="color: var(--danger-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
         <div class="kpi-card fleet-kpi-card edge-accent edge-accent-warning">
-            <div class="kpi-title">Faulty Batteries</div>
-            <div class="kpi-value warning" id="kpi-faulty-batteries">0</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;">
+                <div>
+                    <div class="kpi-title">Faulty Batteries</div>
+                    <div class="kpi-value warning" id="kpi-faulty-batteries">0</div>
+                </div>
+                <i data-lucide="alert-triangle" style="color: var(--warning-color); width: 28px; height: 28px;"></i>
+            </div>
         </div>
     </div>
 
