@@ -206,6 +206,13 @@ body { font-size: var(--text-base); line-height: 1.6; }
   transition: color var(--transition-fast);
 }
 
+.brand-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .brand-label {
   white-space: nowrap;
 }
